@@ -60,6 +60,15 @@ export async function cerrarSesion() {
   return leerRespuesta(respuesta)
 }
 
+export async function cambiarClave(claveActual, claveNueva) {
+  const respuesta = await fetch(`${URL_API}/sesion/clave`, {
+    method: 'PUT',
+    headers: cabeceras({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ claveActual, claveNueva })
+  })
+  return leerRespuesta(respuesta)
+}
+
 export async function listarSolicitudes() {
   const respuesta = await fetch(`${URL_API}/cuentas/solicitudes`, { headers: cabeceras() })
   return leerRespuesta(respuesta)

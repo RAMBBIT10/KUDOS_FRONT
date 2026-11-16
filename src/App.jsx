@@ -5,6 +5,7 @@ import SolicitudCuenta from './componentes/SolicitudCuenta.jsx'
 import PanelAdministrador from './componentes/PanelAdministrador.jsx'
 import FormularioKudo from './componentes/FormularioKudo.jsx'
 import ListaKudos from './componentes/ListaKudos.jsx'
+import CambiarClave from './componentes/CambiarClave.jsx'
 
 const CLAVE_SESION = 'uco-kudos-sesion'
 
@@ -26,6 +27,7 @@ export default function App() {
   const [pantalla, setPantalla] = useState('ingreso')
   const [mensajeInicial, setMensajeInicial] = useState('')
   const [usuarios, setUsuarios] = useState([])
+  const [cambiandoClave, setCambiandoClave] = useState(false)
   const [aviso, setAviso] = useState('')
   const [versionLista, setVersionLista] = useState(0)
   const usuariosActuales = useRef([])
@@ -92,7 +94,13 @@ export default function App() {
       setAviso('')
     }
     cerrarLocalmente()
+    setCambiandoClave(false)
     setPantalla('ingreso')
+  }
+
+  function claveCambiada(mensaje) {
+    setAviso(mensaje)
+    setCambiandoClave(false)
   }
 
   function solicitudEnviada(mensaje) {
@@ -121,6 +129,9 @@ export default function App() {
         <h1>UCO Kudos</h1>
         <div className="sesion">
           <span>{usuario.nombre}</span>
+          <button className="boton boton-claro" onClick={() => setCambiandoClave(true)}>
+            Cambiar clave
+          </button>
           <button className="boton boton-claro" onClick={salir}>
             Salir
           </button>
@@ -133,7 +144,9 @@ export default function App() {
         </div>
       )}
 
-      {esAdministrador ? (
+      {cambiandoClave ? (
+        <CambiarClave alVolver={() => setCambiandoClave(false)} alCambiar={claveCambiada} />
+      ) : esAdministrador ? (
         <PanelAdministrador />
       ) : (
         <>
