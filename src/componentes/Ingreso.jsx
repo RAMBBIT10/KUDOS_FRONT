@@ -33,11 +33,11 @@ export default function Ingreso({ alEntrar, alPedirCuenta, aviso }) {
 
       <form className="tarjeta" onSubmit={entrar}>
         <h2>Ingresar</h2>
-        <label htmlFor="correo">Correo institucional</label>
+        <label htmlFor="correo">Correo</label>
         <input
           id="correo"
           type="email"
-          placeholder="nombre.apellido1234@uco.net.co"
+          placeholder="nombre@gmail.com"
           value={correo}
           onChange={(evento) => setCorreo(evento.target.value)}
           required

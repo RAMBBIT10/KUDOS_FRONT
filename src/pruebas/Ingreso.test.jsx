@@ -10,7 +10,7 @@ import { ingresar } from '../api.js'
 import Ingreso from '../componentes/Ingreso.jsx'
 
 function llenar(correo, clave) {
-  fireEvent.change(screen.getByLabelText('Correo institucional'), { target: { value: correo } })
+  fireEvent.change(screen.getByLabelText('Correo'), { target: { value: correo } })
   fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: clave } })
   fireEvent.click(screen.getByRole('button', { name: 'Ingresar' }))
 }

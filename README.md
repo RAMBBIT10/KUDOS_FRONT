@@ -6,7 +6,7 @@ Autor: Diego Alejandro Vega, Ingeniería del Software II, Universidad Católica 
 
 ## Qué hace
 
-- Solicitar una cuenta institucional (correo `nombre.apellido1234@uco.net.co`) y esperar la aprobación del administrador.
+- Solicitar una cuenta (con cualquier correo) y esperar la aprobación del administrador.
 - Ingresar con correo y contraseña; si no hay cuenta, si la solicitud está pendiente o si fue rechazada, la pantalla lo dice.
 - El administrador ve un panel con las solicitudes pendientes y las aprueba o rechaza.
 - Publicar un Kudo a otra persona, con mensaje de hasta 500 caracteres y hasta 5 adjuntos (imágenes o PDF).
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Abre la dirección que muestra la terminal (normalmente `http://localhost:5173`). La variable `VITE_API_URL` apunta al backend (por defecto `http://localhost:3000`).
+Abre la dirección que muestra la terminal (normalmente `http://localhost:5173`). La variable `VITE_API_URL` apunta al backend (por defecto `http://localhost:3000`) y `VITE_PREFIJO_TELEFONO` es el prefijo del país que se muestra junto al teléfono (por defecto `+57`).
 
 Para que el backend acepte al frontend, en su `.env` deja `CORS_ORIGENES=*` o pon la dirección del frontend.
 
@@ -43,7 +43,7 @@ src/
   App.jsx                 Sesión, aviso en tiempo real y pantalla principal
   componentes/
     Ingreso.jsx           Ingresar con correo y contraseña
-    SolicitudCuenta.jsx   Pedir una cuenta institucional
+    SolicitudCuenta.jsx   Pedir una cuenta
     PanelAdministrador.jsx Aprobar o rechazar solicitudes
     FormularioKudo.jsx    Publicar un Kudo
     ListaKudos.jsx        Kudos recibidos con paginación

@@ -11,11 +11,11 @@ import SolicitudCuenta from '../componentes/SolicitudCuenta.jsx'
 
 function llenar() {
   fireEvent.change(screen.getByLabelText('Nombre completo'), { target: { value: 'Ana Gomez' } })
-  fireEvent.change(screen.getByLabelText('Correo institucional'), {
+  fireEvent.change(screen.getByLabelText('Correo'), {
     target: { value: 'ana.gomez1111@uco.net.co' }
   })
   fireEvent.change(screen.getByLabelText('Rol'), { target: { value: 'PROFESOR' } })
-  fireEvent.change(screen.getByLabelText(/Teléfono/), { target: { value: '+573000000001' } })
+  fireEvent.change(screen.getByLabelText(/Teléfono/), { target: { value: '3000000001' } })
   fireEvent.click(screen.getByRole('button', { name: 'Enviar solicitud' }))
 }
 
@@ -34,17 +34,17 @@ describe('SolicitudCuenta', () => {
     expect(solicitarCuenta).toHaveBeenCalledWith({
       nombre: 'Ana Gomez',
       correo: 'ana.gomez1111@uco.net.co',
-      telefono: '+573000000001',
+      telefono: '3000000001',
       rol: 'PROFESOR'
     })
   })
 
-  it('muestra el error del backend si el correo no es institucional', async () => {
-    solicitarCuenta.mockRejectedValue(new Error('El correo debe ser institucional'))
+  it('muestra el error del backend si el correo no es válido', async () => {
+    solicitarCuenta.mockRejectedValue(new Error('El correo no es válido'))
     render(<SolicitudCuenta alVolver={() => {}} alEnviar={() => {}} />)
     llenar()
 
-    await waitFor(() => expect(screen.getByText('El correo debe ser institucional')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText('El correo no es válido')).toBeInTheDocument())
   })
 
   it('vuelve al ingreso', () => {

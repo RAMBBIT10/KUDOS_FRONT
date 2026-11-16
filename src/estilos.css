@@ -82,6 +82,21 @@ textarea {
   background: #ffffff;
 }
 
+.campo-telefono {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prefijo-telefono {
+  padding: 10px 12px;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  background: #e4f0ec;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
 .boton {
   padding: 12px 16px;
   font: inherit;
